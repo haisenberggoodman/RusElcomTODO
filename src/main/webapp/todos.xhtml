@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Todo List</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="contentInput" value ="Content:"/>
+                <h:inputText id="contentInput" value ="#{todoController.newTodo.content}"/>
+
+                <h:outputLabel for="dueDateInput" value ="Due Date:"/>
+                <h:inputText id="dueDateInput" value ="#{todoController.newTodo.dueDate}"/>
+                
+                <h:outputLabel for="completedInput" value ="Completed:"/>
+                <h:inputText id="completedInput" value ="#{todoController.newTodo.completed}"/>
+                
+                <h:outputLabel for="importantInput" value ="Important:"/>
+                <h:inputText id="importantInput" value ="#{todoController.newTodo.important}"/>
+                
+                <h:commandButton value="Save" action ="{todoController.saveTodo()}"/>
+                
+            </h:panelGrid>
+        </h:form>
+        
+        <h2>All Todos</h2>
+        <h:dataTable value ="#{todoController.todos}" var ="todo">
+            <h:column>#{todo.content}</h:column>
+            <h:column>#{todo.creationTime}</h:column>
+            <h:column>#{todo.dueDate}</h:column>
+            <h:column>#{todo.completed}</h:column>
+            <h:column>#{todo.important}</h:column>
+            <h:column>
+                <h:commandButton value ="Delete" action="#{todoController.deleteTodo(todo.id)}"/>
+            </h:column>      
+        </h:dataTable>    
+    </h:body>
+</html>
